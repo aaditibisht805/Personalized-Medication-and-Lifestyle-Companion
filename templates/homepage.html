@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        /* Background image styles */
+        
+            
+        /* Background image styles */
+        body {
+            background-image: url('Personalized-Medication-and-Lifestyle-Companion/Assets/ed87e4d3897231093453219c366c5d9d.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            height: 75px;
+            padding-top: 20px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 250px;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar h2 {
+            color: skyblue;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding:25px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form styles */
+        .container-form {
+            color: white;
+            border-radius: 15px;
+            padding: 60px;
+            margin-top: 30px;
+            margin: 30px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background-color: white;
+            border-color: blue;
+        }
+
+        .btn-primary:hover {
+            background-color: darkblue;
+            border-color: white;
+        }
+
+        /* Modal button styles */
+        .toggle-button {
+            padding: 9px;
+            margin: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            background-color: skyblue;
+            border: solid 3px darkblue;
+            color: darkblue;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .toggle-button:hover {
+            background-color: white;
+        }
+
+        .modal-content {
+            background-color: darkblue;
+            color: white;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-dialog {
+            max-width: 80%;
+        }
+
+        .modal.fade .modal-dialog {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.fade.show .modal-dialog {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">HealthMate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="C:\Users\User\Desktop\HealthMate\Personalized-Medication-and-Lifestyle-Companion\templates\About\About.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Personalized-Medication-and-Lifestyle-Companion\templates\Team\Team.html">Developer</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h2>User Profile</h2>
+                <br><p id="userName"></p>
+                <p id="userEmail"></p>
+                <br>
+                <br>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="C:\Users\User\Desktop\HealthMate\Personalized-Medication-and-Lifestyle-Companion\templates\About\About.html">About</a></li>
+                    <li><a href="Personalized-Medication-and-Lifestyle-Companion\templates\Team\Team.html">Developer</a></li>
+                </ul>
+            </div>
+
+            <!-- Main form -->
+            <div class="col-md-9">
+                <div class="container container-form">
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="symptoms" style="font-size:25px; color: white; font-weight: bold;">Mention Symptoms:</label>
+                            <br><input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Type symptoms such as itching, sleeping, aching etc">
+                        </div>
+                        <br>
+                        <button type="button" id="startSpeechRecognition" class="btn btn-primary" style="margin-left:3px; border:1px solid #77A5F8; border-radius:20px;">
+                            Start Speech Recognition
+                        </button>
+                        <br>
+                        <div name="mysysms" id="transcription"></div>
+                        <br>
+                        <button type="submit" class="btn btn-danger btn-lg" style="width: 30%; padding: 13px; margin: 5px auto; background-color: #333; text-align: center; display:block;">Predict</button>
+                    </form>
+                </div>
+            
+
+                <!-- Results -->
+                <h1 class="text-center my-4 mt-4" style="margin: 50px; font-weight: bold; color: #333; padding: 0px; text-align: center;">Our AI System Results</h1>
+                <div class="container">
+                    <div class="result-container" style="margin: 50px;">
+                        <!-- Buttons to toggle display -->
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+                        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+                    </div>
+                </div>
+                
+                
+
+                <!-- Modals -->
+                <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ predicted_disease }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ dis_des }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="precautionModalLabel">Precautions</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    {% for precaution in precautions %}
+                                    <li>{{ precaution }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    {% for medication in medications %}
+                                    <li>{{ medication }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    {% for workout in workouts %}
+                                    <li>{{ workout }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    {% for diet in diets %}
+                                    <li>{{ diet }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Main form end -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGz5S5pQTR3tvv7j2Dk7A8eQ2e15E5gqKmvFad1N1Fx49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-wEmeIV1mKuiNp12S8iR+R02a6X7Qs4cktOa0Lh0j6BOEXszmULMAnrHxG/Rn6l6p" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyDgfHp4nPx8-9y6dgDEwxrAAC6AYlNHk0s",
+  authDomain: "healthmate-3037e.firebaseapp.com",
+  projectId: "healthmate-3037e",
+  storageBucket: "healthmate-3037e.appspot.com",
+  messagingSenderId: "23255493270",
+  appId: "1:23255493270:web:cd353db0d18665db7b30b7"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Retrieve and display user information
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in
+                document.getElementById("userName").innerText = "Name: " + user.displayName;
+                document.getElementById("userEmail").innerText = "Email: " + user.email;
+            } else {
+                // No user is signed in
+                document.getElementById("userName").innerText = "No user signed in";
+                document.getElementById("userEmail").innerText = "";
+            }
+        });
+    </script>
+</body>
+</html>
